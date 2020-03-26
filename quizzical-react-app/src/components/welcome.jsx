@@ -8,8 +8,10 @@ class Welcome extends Component {
     return (
       <React.Fragment>
         <span>
-          <h1>{this.state.message}</h1>
-          <button className="btn btn-primary btn-lg m-3">CREATE A QUIZ</button>
+          <h1 className="welcome">{this.state.message}</h1>
+          <button className="btn btn-info btn-lg create-quiz">
+            CREATE A QUIZ
+          </button>
         </span>
       </React.Fragment>
     );
