@@ -5,10 +5,17 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import Welcome from "./components/welcome";
 
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <Welcome />
+    <React.StrictMode>
+       
+        
+            <Welcome />
+            
+       
   </React.StrictMode>,
+       
   document.getElementById("root")
 );
 

@@ -67,3 +67,35 @@ code {
   margin-left: 48%;
   margin-top: 2%;
 }
+/*Quiz maker*/
+.quizQuestions{
+    text-align:center;
+    color:white;
+    font-size:20px;
+}
+   #input {
+    width: 500px;
+    justify-content: center;
+    margin-left:500px;
+   }
+   #questions{
+       margin-top:-100px;
+       margin-right:600px;
+   }
+   #answers {
+    width: 600px;
+    justify-content: center;
+    margin-left: 500px;
+   }
+.multiple-choice {
+    width: 500px;
+    margin-left:500px;
+    margin-top:0;
+    
+ }
+hr {
+    background-color: white;
+    height: 4px;
+    width: 900px;
+}
+

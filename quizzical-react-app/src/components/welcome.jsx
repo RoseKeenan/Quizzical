@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import Category from "../Category";
+import Category from "../components/category";
+
 
 class Welcome extends Component {
   state = {
     message: "Welcome to Quizzical",
     renderView: 0
   };
-
+    
   constructor() {
     super();
     this.createQuiz = this.createQuiz.bind(this);
@@ -16,7 +17,6 @@ class Welcome extends Component {
     this.setState({
       renderView: 1
     });
-    console.log(this.state.renderView);
     this.render();
   }
 
