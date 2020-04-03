@@ -36,6 +36,16 @@ code {
   margin-left: 43%;
   margin-top: 5%;
 }
+.take-a-quiz { /*take quiz button on welcome page*/
+    
+    margin-left:43.5%;
+    margin-top: 3%;
+}
+.take-quiz { /*button for quizzes*/
+    text-align: center;
+    margin-left: 2%;
+    margin-top: 5%;
+}
 
 .category {
   text-align: center;
@@ -97,5 +107,60 @@ hr {
     background-color: white;
     height: 4px;
     width: 900px;
+}
+.Cards {
+    color: #116979;
+    width: 28%;
+    height: 50%;
+    margin-left: 15%;
+    margin-top: 5%;
+    font-size:12px;
+}
+.card-body {
+    background-color: ghostwhite;
+}
+
+.result {
+    margin-top: 20px;
+}
+
+.options {
+    cursor: pointer;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.selected {
+    background: #dbdbeb !important;
+}
+
+ul {
+    list-style-type: none;
+}
+.MultipleChoice {
+    background-color: white;
+    color: black;
+    height: 50px;
+    width: 40%;
+    border-radius: 5px 5px;
+    margin-left: 30%;
+    
+    
+}
+.finishMultipleChoice {
+    background-color: white;
+    color: black;
+    height: 50px;
+    width: 40%;
+    border-radius: 5px 5px;
+    margin:2%;
+    margin-left:30%;
+}
+
+.NextButton {
+    border-radius: 15px;
+    background-color: #116979;
+    width: 200px;
+    height: 100px;
 }
 
