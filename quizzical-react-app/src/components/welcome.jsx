@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Category from "../components/category";
+import TakeQuiz from "../components/TakeQuizzes";
 
 
 class Welcome extends Component {
@@ -10,7 +11,8 @@ class Welcome extends Component {
     
   constructor() {
     super();
-    this.createQuiz = this.createQuiz.bind(this);
+      this.createQuiz = this.createQuiz.bind(this);
+      this.takeQuiz = this.takeQuiz.bind(this);
   }
 
   createQuiz() {
@@ -18,12 +20,23 @@ class Welcome extends Component {
       renderView: 1
     });
     this.render();
-  }
+    }
+
+    takeQuiz() {
+        this.setState({
+            renderView: 2
+        });
+        this.render();
+    }
 
   render() {
     if (this.state.renderView === 1) {
       return <Category />;
-    } else {
+    }
+    else if (this.state.renderView === 2) {
+        return <TakeQuiz />;
+    }
+        else {
       return (
         <React.Fragment>
           <span>
@@ -33,6 +46,12 @@ class Welcome extends Component {
               onClick={this.createQuiz}
             >
               CREATE A QUIZ
+            </button>
+                  <button
+                      className="btn btn-info btn-lg take-a-quiz"
+                      onClick={this.takeQuiz}
+                  >
+                         TAKE A  QUIZ
             </button>
           </span>
         </React.Fragment>
