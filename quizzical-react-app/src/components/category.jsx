@@ -5,14 +5,14 @@ import {
   Switch,
   Router,
   BrowserRouter,
-  Route
+  Route,
 } from "react-router-dom";
 import CreateQuestions from "../components/createQuestion";
 import { browserHistory } from "react-router";
 
 class Category extends Component {
   state = {
-    renderView: 0
+    renderView: 0,
   };
 
   constructor() {
@@ -22,7 +22,7 @@ class Category extends Component {
 
   onSubmit() {
     this.setState({
-      renderView: 1
+      renderView: 1,
     });
     this.render();
   }
@@ -45,7 +45,7 @@ class Category extends Component {
                 name="gender"
                 value="male"
               ></input>
-              <label className="radio-label" for="food">
+              <label className="radio-label" htmlFor="food">
                 Food
               </label>
               <br></br>
@@ -57,7 +57,7 @@ class Category extends Component {
                 name="gender"
                 value="animal"
               ></input>
-              <label className="radio-label" for="animal">
+              <label className="radio-label" htmlFor="animal">
                 Animal
               </label>
               <br></br>
@@ -69,7 +69,7 @@ class Category extends Component {
                 name="gender"
                 value="geography"
               ></input>
-              <label className="radio-label" for="geography">
+              <label className="radio-label" htmlFor="geography">
                 Geography
               </label>
               <br></br>
@@ -81,16 +81,18 @@ class Category extends Component {
                 name="gender"
                 value="personal"
               ></input>
-              <label className="radio-label" for="personal">
+              <label className="radio-label" htmlFor="personal">
                 Personal
               </label>
             </form>
-            <button
-              onClick={this.onSubmit}
-              className="btn btn-info center-button"
-            >
-              OK
-            </button>
+            <div className="col text-center">
+              <button
+                onClick={this.onSubmit}
+                className="btn btn-info center-button"
+              >
+                CREATE
+              </button>
+            </div>
           </div>
         </FadeIn>
       );
