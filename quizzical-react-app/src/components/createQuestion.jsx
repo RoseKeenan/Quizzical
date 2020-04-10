@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import FadeIn from "react-fade-in";
 import UserQuiz from "../components/UserQuiz";
 
+
+
 class CreateQuestions extends Component {
   constructor(props) {
     super(props);
@@ -47,20 +49,33 @@ class CreateQuestions extends Component {
   }
 
   render() {
-    if (this.state.renderView === 1) {
-      const quiz = [
-        this.state.QuestionOne,
-        this.state.QuestionOneWrong1,
-        this.state.QuestionOneWrong2,
-        this.state.QuestionOneWrong3,
-        this.state.QuestionOneCorrect,
+      if (this.state.renderView === 1) {
+         const quiz = [{
+             id: 0,
+             question: this.state.QuestionOne,
+             options: [
+                 this.state.QuestionOneCorrect,
+                 this.state.QuestionOneWrong1,
+                 this.state.QuestionOneWrong2,
+                 this.state.QuestionOneWrong3,
+             ],
+             answer: this.state.QuestionOneCorrect
 
-        this.state.QuestionTwo,
-        this.state.QuestionTwoWrong1,
-        this.state.QuestionTwoWrong2,
-        this.state.QuestionTwoWrong3,
-        this.state.QuestionTwoCorrect,
-      ];
+          },
+          {
+              id: 1,
+                  question: this.state.QuestionTwo,
+                      options: [
+                          this.state.QuestionTwoCorrect,
+                          this.state.QuestionTwoWrong1,
+                          this.state.QuestionTwoWrong2,
+                          this.state.QuestionTwoWrong3,
+                      ],
+                          answer: this.state.QuestionTwoCorrect
+
+          }
+          ];
+
       return <UserQuiz quiz={quiz} />;
     } else {
       return (
@@ -319,10 +334,6 @@ class CreateQuestions extends Component {
               <div>
                 <br></br>
               </div>
-              <h3>Question One: {this.state.QuestionOne}</h3>
-              <h3>Question Two: {this.state.QuestionTwo}</h3>
-              <h3>Question Three: {this.state.QuestionThree}</h3>
-              <h3>Question Four: {this.state.QuestionFour}</h3>
             </div>
           </React.Fragment>
         </FadeIn>
@@ -331,4 +342,9 @@ class CreateQuestions extends Component {
   }
 }
 
+
+
+
 export default CreateQuestions;
+
+

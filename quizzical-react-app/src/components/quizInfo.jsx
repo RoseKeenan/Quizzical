@@ -1,3 +1,6 @@
+import React, { Component } from "react";
+
+
 export const foodQuiz = [
     {
         id: 0,
