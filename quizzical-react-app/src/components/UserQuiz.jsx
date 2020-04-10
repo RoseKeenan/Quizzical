@@ -19,7 +19,7 @@ class UserQuiz extends Component {
         answer: this.props.quiz[1],
       },
     ];
-    return myQuiz;
+    return <DisplayQuiz myQuiz={myQuiz} />;
   }
 }
 
@@ -77,20 +77,6 @@ class DisplayQuiz extends Component {
     }
   };
   render() {
-    const myQuiz = [
-      {
-        id: 0,
-        question: this.props.quiz[0],
-        options: [
-          this.props.quiz[1],
-          this.props.quiz[2],
-          this.props.quiz[3],
-          this.props.quiz[4],
-        ],
-        answer: this.props.quiz[1],
-      },
-    ];
-
     const { options, myAnswer, currentQuestion, isEnd } = this.state;
 
     if (isEnd) {
