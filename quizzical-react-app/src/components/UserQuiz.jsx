@@ -47,7 +47,6 @@ class UserQuiz extends Component {
             });
         }
     }
-
     //check answer
     checkAnswer = answer => {
         this.setState({ myAnswer: answer, disabled: false });
