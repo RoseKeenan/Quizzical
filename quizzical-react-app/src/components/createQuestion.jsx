@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import FadeIn from "react-fade-in";
 import UserQuiz from "../components/UserQuiz";
 
-
-
 class CreateQuestions extends Component {
   constructor(props) {
     super(props);
@@ -49,32 +47,53 @@ class CreateQuestions extends Component {
   }
 
   render() {
-      if (this.state.renderView === 1) {
-         const quiz = [{
-             id: 0,
-             question: this.state.QuestionOne,
-             options: [
-                 this.state.QuestionOneCorrect,
-                 this.state.QuestionOneWrong1,
-                 this.state.QuestionOneWrong2,
-                 this.state.QuestionOneWrong3,
-             ],
-             answer: this.state.QuestionOneCorrect
-
-          },
-          {
-              id: 1,
-                  question: this.state.QuestionTwo,
-                      options: [
-                          this.state.QuestionTwoCorrect,
-                          this.state.QuestionTwoWrong1,
-                          this.state.QuestionTwoWrong2,
-                          this.state.QuestionTwoWrong3,
-                      ],
-                          answer: this.state.QuestionTwoCorrect
-
-          }
-          ];
+    if (this.state.renderView === 1) {
+      const quiz = [
+        {
+          id: 0,
+          question: this.state.QuestionOne,
+          options: [
+            this.state.QuestionOneWrong1,
+            this.state.QuestionOneWrong2,
+            this.state.QuestionOneCorrect,
+            this.state.QuestionOneWrong3,
+          ],
+          answer: this.state.QuestionOneCorrect,
+        },
+        {
+          id: 1,
+          question: this.state.QuestionTwo,
+          options: [
+            this.state.QuestionTwoWrong1,
+            this.state.QuestionTwoCorrect,
+            this.state.QuestionTwoWrong2,
+            this.state.QuestionTwoWrong3,
+          ],
+          answer: this.state.QuestionTwoCorrect,
+        },
+        {
+          id: 2,
+          question: this.state.QuestionThree,
+          options: [
+            this.state.QuestionThreeCorrect,
+            this.state.QuestionThreeWrong1,
+            this.state.QuestionThreeWrong2,
+            this.state.QuestionThreeWrong3,
+          ],
+          answer: this.state.QuestionThreeCorrect,
+        },
+        {
+          id: 3,
+          question: this.state.QuestionFour,
+          options: [
+            this.state.QuestionFourWrong1,
+            this.state.QuestiomFourWrong2,
+            this.state.QuestionFourWrong3,
+            this.state.QuestionFourCorrect,
+          ],
+          answer: this.state.QuestionFourCorrect,
+        },
+      ];
 
       return <UserQuiz quiz={quiz} />;
     } else {
@@ -342,9 +361,4 @@ class CreateQuestions extends Component {
   }
 }
 
-
-
-
 export default CreateQuestions;
-
-
