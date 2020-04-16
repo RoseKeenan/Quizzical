@@ -3,11 +3,12 @@ import { CreateQuestions } from "../components/createQuestion";
 import { createPublicKey } from "crypto";
 
 class UserQuiz extends Component {
-  state = {
+    state = {
+    QuizTitle: null,
     currentQuestion: 0,
     myAnswer: null,
-      options: [],
-     score: 0,
+    options: [],
+    score: 0,
     disabled: true,
     isEnd: false,
     
@@ -34,7 +35,8 @@ class UserQuiz extends Component {
 
   loadQuizData = () => {
     this.setState(() => {
-      return {
+        return {
+         QuizTitle: this.props.Title.QuizTitle,
         questions: this.props.quiz[this.state.currentQuestion].question,
         answer: this.props.quiz[this.state.currentQuestion].answer,
         // options: this.props.quiz[this.state.currentQuestion].options,
@@ -53,6 +55,7 @@ class UserQuiz extends Component {
       if (myAnswer === answer) {
           this.setState({
               score: score + 100
+
           });
       }
     this.setState({
@@ -88,7 +91,7 @@ class UserQuiz extends Component {
     }
   };
   render() {
-    const { options, myAnswer, currentQuestion, isEnd } = this.state;
+    const {options, myAnswer, currentQuestion, isEnd } = this.state;
 
     if (isEnd) {
       return (
@@ -106,7 +109,8 @@ class UserQuiz extends Component {
       );
     } else {
       return (
-        <div className="welcome">
+          <div className="welcome">
+          <h3> Welcome to  {this.state.QuizTitle}</h3>
           <h1>{this.state.questions} </h1>
           <span>{`Questions ${currentQuestion}  out of ${
             this.props.quiz.length - 1

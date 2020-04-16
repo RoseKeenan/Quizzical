@@ -7,7 +7,8 @@ class CreateQuestions extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
-      renderView: 0,
+        renderView: 0,
+        QuizTitle: "",
 
       QuestionOne: "",
       QuestionOneCorrect: "",
@@ -47,9 +48,10 @@ class CreateQuestions extends Component {
   }
 
   render() {
-    if (this.state.renderView === 1) {
+      if (this.state.renderView === 1) {
+      const Title = { QuizTitle: this.state.QuizTitle}
       const quiz = [
-        {
+          {
           id: 0,
           question: this.state.QuestionOne,
           options: [
@@ -95,7 +97,7 @@ class CreateQuestions extends Component {
         },
       ];
 
-      return <UserQuiz quiz={quiz} />;
+          return <UserQuiz Title={Title} quiz={quiz} />;
     } else {
       return (
         <FadeIn>
@@ -109,8 +111,11 @@ class CreateQuestions extends Component {
                   <input
                     type="title"
                     className="form-control input"
-                    id="q1"
+                    id=""
                     placeholder="Type your Quiz Title"
+                    name="QuizTitle"
+                    value={this.state.QuizTitle}
+                    onChange={this.handleChange}
                   ></input>
                   <hr></hr>
                   <p className="category-header">
