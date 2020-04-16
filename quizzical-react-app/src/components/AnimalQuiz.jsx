@@ -7,6 +7,7 @@ class AnimalQuiz extends React.Component {
         currentQuestion: 0,
         myAnswer: null,
         options: [],
+        score: 0,
         disabled: true,
         isEnd: false
     };
@@ -28,6 +29,11 @@ class AnimalQuiz extends React.Component {
     nextQuestion = () => {
         
         const { myAnswer, answer, score } = this.state;
+        if (myAnswer === answer) {
+            this.setState({
+                score: score + 100
+            });
+        }
         this.setState({
             currentQuestion: this.state.currentQuestion + 1
         });
@@ -63,6 +69,7 @@ class AnimalQuiz extends React.Component {
         if (isEnd) {
             return (
                 <div className="welcome">
+                    <h3>Game Over your Final score is {this.state.score} out of 400 points </h3>
                     <h3>The correct answer's for the questions was  </h3>
                     <ul>
                         {animalQuiz.map((item, index) => (
