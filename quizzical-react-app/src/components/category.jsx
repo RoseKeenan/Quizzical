@@ -12,13 +12,23 @@ import { browserHistory } from "react-router";
 
 class Category extends Component {
   state = {
-    renderView: 0,
+      renderView: 0,
+      QuizCategory: ''
+      
   };
 
   constructor() {
     super();
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+      this.onSubmit = this.onSubmit.bind(this);
+      this.handleOptionChange = this.handleOptionChange.bind(this);
+    }
+
+    handleOptionChange(event) {
+        this.setState({
+            QuizCategory: event.target.value
+        });
+    }
+
 
   onSubmit() {
     this.setState({
@@ -27,9 +37,10 @@ class Category extends Component {
     this.render();
   }
 
-  render() {
+    render() {
+    const Category = { QuizCategory: this.state.QuizCategory}
     if (this.state.renderView === 1) {
-      return <CreateQuestions />;
+        return <CreateQuestions Category={Category} />;
     } else {
       return (
         <FadeIn>
@@ -39,11 +50,13 @@ class Category extends Component {
               <p className="category-header">Please select a category:</p>
 
               <input
+                checked={this.state.QuizCategory === 'food'}
+                onChange={this.handleOptionChange}
                 className="radio-button"
                 type="radio"
                 id="food"
                 name="gender"
-                value="male"
+                value="food"
               ></input>
               <label className="radio-label" htmlFor="food">
                 Food
@@ -51,6 +64,8 @@ class Category extends Component {
               <br></br>
 
               <input
+                checked={this.state.QuizCategory === 'animal'}
+                onChange={this.handleOptionChange}
                 className="radio-button"
                 type="radio"
                 id="animal"
@@ -63,6 +78,8 @@ class Category extends Component {
               <br></br>
 
               <input
+                checked={this.state.QuizCategory === 'geography'}
+                onChange={this.handleOptionChange}
                 className="radio-button"
                 type="radio"
                 id="geography"
@@ -75,6 +92,8 @@ class Category extends Component {
               <br></br>
 
               <input
+                checked={this.state.QuizCategory === 'personal'}
+                onChange={this.handleOptionChange}
                 className="radio-button"
                 type="radio"
                 id="personal"

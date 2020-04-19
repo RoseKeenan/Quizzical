@@ -7,7 +7,9 @@ class CreateQuestions extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
-      renderView: 0,
+        renderView: 0,
+        QuizTitle: "",
+        QuizCategory: this.props.Category.QuizCategory,
 
       QuestionOne: "",
       QuestionOneCorrect: "",
@@ -27,11 +29,7 @@ class CreateQuestions extends Component {
       QuestionThreeWrong2: "",
       QuestionThreeWrong3: "",
 
-      QuestionFour: "",
-      QuestionFourCorrect: "",
-      QuestionFourWrong1: "",
-      QuestionFourWrong2: "",
-      QuestionFourWrong3: "",
+     
     };
   }
 
@@ -47,9 +45,10 @@ class CreateQuestions extends Component {
   }
 
   render() {
-    if (this.state.renderView === 1) {
+      if (this.state.renderView === 1) {
+      const Title = { QuizTitle: this.state.QuizTitle}
       const quiz = [
-        {
+          {
           id: 0,
           question: this.state.QuestionOne,
           options: [
@@ -58,7 +57,7 @@ class CreateQuestions extends Component {
             this.state.QuestionOneCorrect,
             this.state.QuestionOneWrong3,
           ],
-          answer: this.state.QuestionOneCorrect,
+          answer: this.state.QuestionOneCorrect
         },
         {
           id: 1,
@@ -69,7 +68,7 @@ class CreateQuestions extends Component {
             this.state.QuestionTwoWrong2,
             this.state.QuestionTwoWrong3,
           ],
-          answer: this.state.QuestionTwoCorrect,
+          answer: this.state.QuestionTwoCorrect
         },
         {
           id: 2,
@@ -80,28 +79,18 @@ class CreateQuestions extends Component {
             this.state.QuestionThreeWrong2,
             this.state.QuestionThreeWrong3,
           ],
-          answer: this.state.QuestionThreeCorrect,
-        },
-        {
-          id: 3,
-          question: this.state.QuestionFour,
-          options: [
-            this.state.QuestionFourWrong1,
-            this.state.QuestiomFourWrong2,
-            this.state.QuestionFourWrong3,
-            this.state.QuestionFourCorrect,
-          ],
-          answer: this.state.QuestionFourCorrect,
-        },
+          answer: this.state.QuestionThreeCorrect
+        }
+       
       ];
 
-      return <UserQuiz quiz={quiz} />;
+          return <UserQuiz Title={Title} quiz={quiz} />;
     } else {
       return (
         <FadeIn>
           <React.Fragment>
             <div className="col text-center">
-              <h1 className="welcome">CREATE A QUIZ</h1>
+                      <h1 className="welcome">Create your {this.state.QuizCategory} quiz</h1>
               <br></br>
               <form>
                 <div className="quizQuestions">
@@ -109,8 +98,11 @@ class CreateQuestions extends Component {
                   <input
                     type="title"
                     className="form-control input"
-                    id="q1"
+                    id=""
                     placeholder="Type your Quiz Title"
+                    name="QuizTitle"
+                    value={this.state.QuizTitle}
+                    onChange={this.handleChange}
                   ></input>
                   <hr></hr>
                   <p className="category-header">
@@ -281,62 +273,6 @@ class CreateQuestions extends Component {
                     placeholder="Type a WRONG answer"
                     name="QuestionThreeWrong3"
                     value={this.state.QuestionThreeWrong3}
-                    onChange={this.handleChange}
-                  ></input>
-                  <br></br>
-
-                  <h2>Question Four:</h2>
-                  <input
-                    type="title"
-                    className="form-control questions"
-                    id=""
-                    placeholder="Type your question"
-                    name="QuestionFour"
-                    value={this.state.QuestionFour}
-                    onChange={this.handleChange}
-                  ></input>
-                  <br></br>
-
-                  <input
-                    type="title"
-                    className="form-control text-center answers"
-                    id=""
-                    placeholder="Type the CORRECT answer"
-                    name="QuestionFourCorrect"
-                    value={this.state.QuestionFourCorrect}
-                    onChange={this.handleChange}
-                  ></input>
-                  <br></br>
-
-                  <input
-                    type="title"
-                    className="form-control text-center answers"
-                    id=""
-                    placeholder="Type a WRONG answer"
-                    name="QuestionFourWrong1"
-                    value={this.state.QuestionFourWrong1}
-                    onChange={this.handleChange}
-                  ></input>
-                  <br></br>
-
-                  <input
-                    type="title"
-                    className="form-control text-center answers"
-                    id=""
-                    placeholder="Type a WRONG answer"
-                    name="QuestionFourWrong2"
-                    value={this.state.QuestionFourWrong2}
-                    onChange={this.handleChange}
-                  ></input>
-                  <br></br>
-
-                  <input
-                    type="title"
-                    className="form-control text-center answers"
-                    id=""
-                    placeholder="Type a WRONG answer"
-                    name="QuestionFourWrong3"
-                    value={this.state.QuestionFourWrong3}
                     onChange={this.handleChange}
                   ></input>
                   <br></br>

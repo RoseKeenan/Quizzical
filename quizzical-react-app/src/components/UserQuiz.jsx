@@ -1,15 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import { CreateQuestions } from "../components/createQuestion";
 import { createPublicKey } from "crypto";
 
-class UserQuiz extends Component {
-  state = {
+class UserQuiz extends React.Component {
+    state = {
+    QuizTitle: null,
     currentQuestion: 0,
     myAnswer: null,
     options: [],
+    score: 0,
     disabled: true,
-    isEnd: false,
-    correct: 0,
+    isEnd: false
+    
   };
 
   shuffle(array) {
@@ -33,10 +35,10 @@ class UserQuiz extends Component {
 
   loadQuizData = () => {
     this.setState(() => {
-      return {
+        return {
+        QuizTitle: this.props.Title.QuizTitle,
         questions: this.props.quiz[this.state.currentQuestion].question,
         answer: this.props.quiz[this.state.currentQuestion].answer,
-        // options: this.props.quiz[this.state.currentQuestion].options,
         options: this.shuffle(
           this.props.quiz[this.state.currentQuestion].options
         ),
@@ -48,9 +50,15 @@ class UserQuiz extends Component {
     this.loadQuizData();
   }
   nextQuestion = () => {
-    const { myAnswer, answer, score } = this.state;
+      const { myAnswer, answer, score } = this.state;
+      if (myAnswer === answer) {
+          this.setState({
+              score: score + 100
+
+          });
+      }
     this.setState({
-      currentQuestion: this.state.currentQuestion + 1,
+      currentQuestion: this.state.currentQuestion + 1
     });
     console.log(this.state.currentQuestion);
   };
@@ -62,7 +70,6 @@ class UserQuiz extends Component {
           disabled: true,
           questions: this.props.quiz[this.state.currentQuestion].question,
           answer: this.props.quiz[this.state.currentQuestion].answer,
-          //   options: this.props.quiz[this.state.currentQuestion].options,
           options: this.shuffle(
             this.props.quiz[this.state.currentQuestion].options
           ),
@@ -71,68 +78,70 @@ class UserQuiz extends Component {
     }
   }
   //check answer
-  checkAnswer = (answer) => {
+  checkAnswer = answer=> {
     this.setState({ myAnswer: answer, disabled: false });
   };
   finish = () => {
     if (this.state.currentQuestion === this.props.quiz.length - 1) {
       this.setState({
-        isEnd: true,
+        isEnd: true
       });
     }
   };
   render() {
-    const { options, myAnswer, currentQuestion, isEnd } = this.state;
+    const {options, myAnswer, currentQuestion, isEnd } = this.state;
 
-    if (isEnd) {
-      return (
-        <div className="welcome">
-          <h3>The correct answer's for the questions was </h3>
-          <ul>
-            {this.props.quiz.map((item, index) => (
-              <li className="finishMultipleChoice" key={index}>
-                {item.answer}
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
-    } else {
-      return (
-        <div className="welcome">
-          <h1>{this.state.questions} </h1>
-          <span>{`Questions ${currentQuestion}  out of ${
-            this.props.quiz.length - 1
-          } remaining `}</span>
-          {options.map((option) => (
-            <p
-              key={option.id}
-              className={` MultipleChoice
+      if (isEnd) {
+          return (
+              <div className="welcome">
+                  <h3>Game Over your Final score is {this.state.score} out of 300 points </h3>
+                  <h3>The correct answer's for the questions was </h3>
+                  <ul>
+                      {this.props.quiz.map((item, index) => (
+                          <li className="finishMultipleChoice" key={index}>
+                              {item.answer}
+                          </li>
+                      ))}
+                  </ul>
+              </div>
+          );
+      } else {
+          return (
+              <div className="welcome">
+                  <h3> Welcome to  {this.state.QuizTitle}</h3>
+                  <h1>{this.state.questions} </h1>
+                  <span>{`Questions ${currentQuestion}  out of ${
+                      this.props.quiz.length - 1
+                      } remaining `}</span>
+                  {options.map(option => (
+                      <p
+                          key={option.id}
+                          className={` MultipleChoice
          ${myAnswer === option ? "selected" : null}
          `}
-              onClick={() => this.checkAnswer(option)}
-            >
-              {option}
-            </p>
-          ))}
-          {currentQuestion < this.props.quiz.length - 1 && (
-            <button
-              className="btn btn-info take-quiz"
-              disabled={this.state.disabled}
-              onClick={this.nextQuestion}
-            >
-              Next
+                          onClick={() => this.checkAnswer(option)}
+                      >
+                          {option}
+                      </p>
+                  ))}
+                  {currentQuestion < this.props.quiz.length - 1 && (
+                      <button
+                          className="btn btn-info take-quiz"
+                          disabled={this.state.disabled}
+                          onClick={this.nextQuestion}
+                      >
+                          Next
             </button>
-          )}
-          {/* //adding a finish button */}
-          {currentQuestion === this.props.quiz.length - 1 && (
-            <button className="btn btn-info take-quiz" onClick={this.finish}>
-              Finish
+                  )}
+                  {/* //adding a finish button */}
+                  {currentQuestion === this.props.quiz.length - 1 && (
+                      <button className="btn btn-info take-quiz" onClick={this.finish}>
+                          Finish
             </button>
-          )}
-        </div>
-      );
-    }
+                  )}
+              </div>
+          );
+      }
   }
 }
 
