@@ -31,6 +31,8 @@ class FoodQuiz extends React.Component {
                 score: score + 100
             });
         }
+       
+        
         this.setState({
             currentQuestion: this.state.currentQuestion + 1
 

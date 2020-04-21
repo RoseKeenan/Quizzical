@@ -124,7 +124,7 @@ class UserQuiz extends React.Component {
                           {option}
                       </p>
                   ))}
-                  {currentQuestion < this.props.quiz.length - 1 && (
+                  {currentQuestion < this.props.quiz.length -1 && (
                       <button
                           className="btn btn-info take-quiz"
                           disabled={this.state.disabled}
