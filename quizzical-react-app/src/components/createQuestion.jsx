@@ -7,9 +7,9 @@ class CreateQuestions extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
-        renderView: 0,
-        QuizTitle: "",
-        QuizCategory: this.props.Category.QuizCategory,
+      renderView: 0,
+      QuizTitle: "",
+      QuizCategory: this.props.Category.QuizCategory,
 
       QuestionOne: "",
       QuestionOneCorrect: "",
@@ -28,8 +28,6 @@ class CreateQuestions extends Component {
       QuestionThreeWrong1: "",
       QuestionThreeWrong2: "",
       QuestionThreeWrong3: "",
-
-     
     };
   }
 
@@ -45,10 +43,11 @@ class CreateQuestions extends Component {
   }
 
   render() {
-      if (this.state.renderView === 1) {
-      const Title = { QuizTitle: this.state.QuizTitle}
+    if (this.state.renderView === 1) {
+      const Title = { QuizTitle: this.state.QuizTitle };
+      const Category = { QuizCategory: this.props.Category.QuizCategory };
       const quiz = [
-          {
+        {
           id: 0,
           question: this.state.QuestionOne,
           options: [
@@ -57,7 +56,7 @@ class CreateQuestions extends Component {
             this.state.QuestionOneCorrect,
             this.state.QuestionOneWrong3,
           ],
-          answer: this.state.QuestionOneCorrect
+          answer: this.state.QuestionOneCorrect,
         },
         {
           id: 1,
@@ -68,7 +67,7 @@ class CreateQuestions extends Component {
             this.state.QuestionTwoWrong2,
             this.state.QuestionTwoWrong3,
           ],
-          answer: this.state.QuestionTwoCorrect
+          answer: this.state.QuestionTwoCorrect,
         },
         {
           id: 2,
@@ -79,18 +78,19 @@ class CreateQuestions extends Component {
             this.state.QuestionThreeWrong2,
             this.state.QuestionThreeWrong3,
           ],
-          answer: this.state.QuestionThreeCorrect
-        }
-       
+          answer: this.state.QuestionThreeCorrect,
+        },
       ];
 
-          return <UserQuiz Title={Title} quiz={quiz} />;
+      return <UserQuiz Title={Title} quiz={quiz} Category={Category} />;
     } else {
       return (
         <FadeIn>
           <React.Fragment>
             <div className="col text-center">
-                      <h1 className="welcome">Create your {this.state.QuizCategory} quiz</h1>
+              <h1 className="welcome">
+                Create your {this.state.QuizCategory} quiz
+              </h1>
               <br></br>
               <form>
                 <div className="quizQuestions">
