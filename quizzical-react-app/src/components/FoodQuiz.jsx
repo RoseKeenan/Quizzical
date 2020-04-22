@@ -1,5 +1,6 @@
 import React from "react";
 import { foodQuiz } from "../components/quizInfo";
+import Welcome from "./welcome";
 
 class FoodQuiz extends React.Component {
     state = {
@@ -8,15 +9,22 @@ class FoodQuiz extends React.Component {
         options: [],
         score: 0,
         disabled: true,
-        isEnd: false
+        isEnd: false,
+        renderView: 0,
     };
+
+    goHome() {
+        this.setState({
+            renderView: 1,
+        });
+    }
 
     loadQuizData = () => {
         this.setState(() => {
             return {
                 questions: foodQuiz[this.state.currentQuestion].question,
                 answer: foodQuiz[this.state.currentQuestion].answer,
-                options: foodQuiz[this.state.currentQuestion].options
+                options: foodQuiz[this.state.currentQuestion].options,
             };
         });
     };
@@ -24,18 +32,16 @@ class FoodQuiz extends React.Component {
     componentDidMount() {
         this.loadQuizData();
     }
-    nextQuestion = () => {     //goes to the next question in the array
+    nextQuestion = () => {
+        //goes to the next question in the array
         const { myAnswer, answer, score } = this.state;
         if (myAnswer === answer) {
             this.setState({
-                score: score + 100
+                score: score + 100,
             });
         }
-       
-        
         this.setState({
-            currentQuestion: this.state.currentQuestion + 1
-
+            currentQuestion: this.state.currentQuestion + 1,
         });
         console.log(this.state.currentQuestion);
     };
@@ -47,46 +53,64 @@ class FoodQuiz extends React.Component {
                     disabled: true,
                     questions: foodQuiz[this.state.currentQuestion].question,
                     options: foodQuiz[this.state.currentQuestion].options,
-                    answer: foodQuiz[this.state.currentQuestion].answer
+                    answer: foodQuiz[this.state.currentQuestion].answer,
                 };
             });
         }
     }
-                                  
-    checkAnswer = answer => {           //check answer
+
+    checkAnswer = (answer) => {
+        //check answer
         this.setState({ myAnswer: answer, disabled: false });
     };
     finish = () => {
+        const { myAnswer, answer, score } = this.state;
+        if (myAnswer === answer) {
+            this.setState({
+                score: score + 100,
+            });
+        }
         if (this.state.currentQuestion === foodQuiz.length - 1) {
             this.setState({
-                isEnd: true
+                isEnd: true,
             });
         }
     };
     render() {
         const { options, myAnswer, currentQuestion, isEnd } = this.state;
-
+        if (this.state.renderView === 1) {
+            return <Welcome />;
+        }
         if (isEnd) {
             return (
                 <div className="welcome">
-                    <h3>Game Over your Final score is {this.state.score} out of 400 points </h3>
-                    <h3>The correct answer's for the questions was:  </h3>
-            <ul>
-                            {foodQuiz.map((item, index) => (
-                                <li className="finishMultipleChoice" key={index}>
-                                    {item.answer}
-                                </li>
-                            ))}
-                        </ul>
+                    <h3>
+                        Game Over your Final score is {this.state.score} out of 400 points{" "}
+                    </h3>
+                    <h3>The correct answer's for the questions was: </h3>
+                    <ul>
+                        {foodQuiz.map((item, index) => (
+                            <li className="finishMultipleChoice" key={index}>
+                                {item.answer}
+                            </li>
+                        ))}
+                    </ul>
+                    <button
+                        className="btn btn-info take-quiz"
+                        onClick={() => this.goHome()}
+                    >
+                        Home
+          </button>
                 </div>
             );
         } else {
             return (
                 <div className="welcome">
                     <h1>{this.state.questions} </h1>
-                    <span>{`Questions ${currentQuestion}  out of ${foodQuiz.length -
-                        1} remaining `}</span>
-                    {options.map(option => (
+                    <span>{`Questions ${currentQuestion}  out of ${
+                        foodQuiz.length - 1
+                        } remaining `}</span>
+                    {options.map((option) => (
                         <p
                             key={option.id}
                             className={` MultipleChoice
@@ -119,10 +143,4 @@ class FoodQuiz extends React.Component {
 }
 
 export default FoodQuiz;
-
-
-
-
-  
-
 

@@ -113,11 +113,12 @@ hr {
 }
 .Cards {
   color: #116979;
-  width: 28%;
+  width: 20%;
   height: 50%;
-  margin-left: 15%;
+  margin-left: 10%;
   margin-top: 5%;
   font-size: 12px;
+  float: left;
 }
 .card-body {
   background-color: ghostwhite;
